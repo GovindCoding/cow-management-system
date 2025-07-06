@@ -1,0 +1,42 @@
+
+{
+  "info": {
+    "name": "MilkRecord API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All MilkRecords",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/milk",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["milk"]
+        }
+      }
+    },
+    {
+      "name": "Add MilkRecord",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{
+  "cowId": 1,
+  "quantity": 4.5,
+  "session": "Morning",
+  "date": "2025-07-01"
+}" },
+        "url": {
+          "raw": "http://localhost:8080/milk",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["milk"]
+        }
+      }
+    }
+  ]
+}

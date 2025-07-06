@@ -1,0 +1,10 @@
+
+rootProject.name = 'cowservice-management-system'
+
+include 'discovery-service'
+include 'gateway-service'
+include 'cow-service'
+include 'milk-service'
+include 'health-service'
+include 'auth-service'
+include 'insurance-service'

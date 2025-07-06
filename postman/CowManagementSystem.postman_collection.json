@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "Cow Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Cows",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/cows",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["cows"]
+        }
+      }
+    },
+    {
+      "name": "Add Cow",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{
+  "name": "Gauri",
+  "breed": "Sahiwal",
+  "dob": "2022-01-10"
+}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/cows",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["cows"]
+        }
+      }
+    }
+  ]
+}

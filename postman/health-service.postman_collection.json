@@ -1,0 +1,42 @@
+
+{
+  "info": {
+    "name": "HealthRecord API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All HealthRecords",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Add HealthRecord",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{
+  "cowId": 1,
+  "diagnosis": "Fever",
+  "treatment": "Paracetamol",
+  "date": "2025-07-01"
+}" },
+        "url": {
+          "raw": "http://localhost:8080/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["health"]
+        }
+      }
+    }
+  ]
+}
