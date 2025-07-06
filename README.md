@@ -1,5 +1,5 @@
 ===========================================================
-CowManager – Intelligent Cow Management System
+Cow Management - Intelligent Cow Management System
 ===========================================================
 
 CowManager is a modular, cloud-ready livestock management platform built using Spring Boot microservices. It enables dairy and cattle farms to efficiently manage cow health, breeding, milk production, feed inventory, staff, and calves through a scalable and data-driven architecture.
@@ -9,7 +9,6 @@ CowManager is a modular, cloud-ready livestock management platform built using S
 -----------------------------------------------------------
 
 Each module is a standalone Spring Boot microservice:
-0. user-service          - Manages user authentication and roles
 1. cow-service           - Manages cow profiles and lifecycle events
 2. health-service        - Tracks vaccinations, illnesses, and vet visits
 3. breeding-service      - Handles insemination, pregnancy, and calving
@@ -25,6 +24,19 @@ Each module is a standalone Spring Boot microservice:
 13. api-gateway          - Centralized routing and security
 14. service-registry     - Eureka or Consul for service discovery
 15. config-server        - Centralized configuration management
+16. user-service          - Manages user authentication and roles
+17. notification-service - Sends alerts and reminders
+18. analytics-service    - Aggregates and visualizes farm KPIs
+19. insurance-service    - Manages insurance policies for cows
+20. reporting-service    - Generates reports on farm operations
+21. audit-service       - Tracks changes and actions for compliance
+22. payment-service     - Manages payments for services and products
+23. feedback-service    - Collects feedback from users and vets
+24. training-service    - Manages training schedules and materials for staff
+25. resource-service    - Manages resources like water, pasture, and equipment
+26. weather-service     - Provides weather updates and forecasts
+27. marketplace-service - Connects with local markets for selling produce
+28. community-service  - Manages community interactions and events
 
 -----------------------------------------------------------
 🛠️ Tech Stack
