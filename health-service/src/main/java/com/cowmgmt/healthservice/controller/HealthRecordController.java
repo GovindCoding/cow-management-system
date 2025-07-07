@@ -2,7 +2,7 @@
 package com.cowmgmt.healthservice.controller;
 
 import com.cowmgmt.healthservice.model.HealthRecord;
-import com.cowmgmt.healthservice.service.HealthService;
+import com.cowmgmt.healthservice.service.HealthRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class HealthRecordController {
 
     @Autowired
-    private HealthService service;
+    private HealthRecordService service;
 
     @PostMapping
     public ResponseEntity<HealthRecord> save(@RequestBody HealthRecord healthRecord) {

@@ -2,7 +2,7 @@
 package com.cowmgmt.milkservice.controller;
 
 import com.cowmgmt.milkservice.model.MilkRecord;
-import com.cowmgmt.milkservice.service.MilkService;
+import com.cowmgmt.milkservice.service.MilkRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class MilkRecordController {
 
     @Autowired
-    private MilkService service;
+    private MilkRecordService service;
 
     @PostMapping
     public ResponseEntity<MilkRecord> save(@RequestBody MilkRecord milkRecord) {
