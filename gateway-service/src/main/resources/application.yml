@@ -11,6 +11,11 @@ spring:
           uri: lb://cow-service
           predicates:
             - Path=/cows/**
+        - id: insurance-service
+          uri: lb://insurance-service
+          predicates:
+            - Path=/insurance/**
+
   discovery:
     locator:
       enabled: true

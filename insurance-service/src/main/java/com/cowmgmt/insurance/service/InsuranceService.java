@@ -15,13 +15,20 @@ public class InsuranceService {
     public Insurance save(Insurance insurance) {
 
         String resourcePath = getClass().getClassLoader().getResource("").getPath();
-        String filePath = resourcePath + "qrcode.png";
+
+        if (resourcePath.startsWith("/")) {
+            resourcePath = resourcePath.substring(1);
+        }
+
+        String filePath = resourcePath + insurance.getPolicyNumber()+"_qrcode.png";
+
+        System.out.println("filePath."+filePath);
 
         try {
             new QRCodeGenerator().generateQRCodeImage(
                     insurance.getPolicyNumber(), // text to encode
-                    300,                       // width
-                    300,                       // height
+                    400,                       // width
+                    400,                       // height
                     filePath               // output file path
             );
             System.out.println("QR Code generated successfully.");

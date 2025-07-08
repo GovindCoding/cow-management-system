@@ -14,8 +14,8 @@ public class Insurance {
     private Long cowId;
     private String policyNumber;
     private String provider;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate startDate = LocalDate.now();
+    private LocalDate endDate = LocalDate.now().plusYears(1); // Default to 1 year from start date
     private Double coverageAmount;
 
     // Getters and Setters
