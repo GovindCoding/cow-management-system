@@ -1,0 +1,360 @@
+{
+  "info": {
+    "name": "Cow Management System Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Service",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{auth_service}}/auth/register", "host": ["{{auth_service}}"], "path": ["auth", "register"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": [
+            {
+              "name": "User",
+              "body": "{\n  \"id\": 1,\n  \"username\": \"string\"\n}",
+              "code": 200,
+              "header": [],
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{auth_service}}/auth/login", "host": ["{{auth_service}}"], "path": ["auth", "login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": [
+            {
+              "name": "JWT Token",
+              "body": "{\n  \"token\": \"<jwt>\"\n}",
+              "code": 200,
+              "header": [],
+              "status": "OK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cow Service",
+      "item": [
+        {
+          "name": "Add Cow",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{cow_service}}/cows", "host": ["{{cow_service}}"], "path": ["cows"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"string\",\n  \"breed\": \"string\",\n  \"dob\": \"2024-01-01\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": [
+            {
+              "name": "Cow",
+              "body": "{\n  \"id\": 1,\n  \"name\": \"string\",\n  \"breed\": \"string\",\n  \"dob\": \"2024-01-01\",\n  \"createdOn\": \"2024-07-07T00:00:00\"\n}",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get All Cows",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{cow_service}}/cows", "host": ["{{cow_service}}"], "path": ["cows"] }
+          },
+          "response": [
+            {
+              "name": "Cow List",
+              "body": "[{...Cow...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get Cows by Cow ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{cow_service}}/cows/cow/1", "host": ["{{cow_service}}"], "path": ["cows", "cow", "1"] }
+          },
+          "response": [
+            {
+              "name": "Cow List",
+              "body": "[{...Cow...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Delete Cow",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{cow_service}}/cows/1", "host": ["{{cow_service}}"], "path": ["cows", "1"] }
+          },
+          "response": [
+            {
+              "name": "No Content",
+              "body": "",
+              "code": 204,
+              "status": "No Content"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Milk Service",
+      "item": [
+        {
+          "name": "Add Milk Record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{milk_service}}/milk", "host": ["{{milk_service}}"], "path": ["milk"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cowId\": 1,\n  \"quantity\": 10.5,\n  \"session\": \"morning\",\n  \"date\": \"2024-07-07\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": [
+            {
+              "name": "MilkRecord",
+              "body": "{\n  \"id\": 1,\n  \"cowId\": 1,\n  \"quantity\": 10.5,\n  \"session\": \"morning\",\n  \"date\": \"2024-07-07\"\n}",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get All Milk Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{milk_service}}/milk", "host": ["{{milk_service}}"], "path": ["milk"] }
+          },
+          "response": [
+            {
+              "name": "MilkRecord List",
+              "body": "[{...MilkRecord...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get Milk Records by Cow ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{milk_service}}/milk/cow/1", "host": ["{{milk_service}}"], "path": ["milk", "cow", "1"] }
+          },
+          "response": [
+            {
+              "name": "MilkRecord List",
+              "body": "[{...MilkRecord...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Delete Milk Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{milk_service}}/milk/1", "host": ["{{milk_service}}"], "path": ["milk", "1"] }
+          },
+          "response": [
+            {
+              "name": "No Content",
+              "body": "",
+              "code": 204,
+              "status": "No Content"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Insurance Service",
+      "item": [
+        {
+          "name": "Add Insurance",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{insurance_service}}/insurance", "host": ["{{insurance_service}}"], "path": ["insurance"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cowId\": 1,\n  \"policyNumber\": \"POL123\",\n  \"provider\": \"ABC\",\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2025-01-01\",\n  \"coverageAmount\": 10000.0\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": [
+            {
+              "name": "Insurance",
+              "body": "{\n  \"id\": 1,\n  \"cowId\": 1,\n  \"policyNumber\": \"POL123\",\n  \"provider\": \"ABC\",\n  \"startDate\": \"2024-01-01\",\n  \"endDate\": \"2025-01-01\",\n  \"coverageAmount\": 10000.0\n}",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get All Insurance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{insurance_service}}/insurance", "host": ["{{insurance_service}}"], "path": ["insurance"] }
+          },
+          "response": [
+            {
+              "name": "Insurance List",
+              "body": "[{...Insurance...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get Insurance by Cow ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{insurance_service}}/insurance/cow/1", "host": ["{{insurance_service}}"], "path": ["insurance", "cow", "1"] }
+          },
+          "response": [
+            {
+              "name": "Insurance List",
+              "body": "[{...Insurance...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Delete Insurance",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{insurance_service}}/insurance/1", "host": ["{{insurance_service}}"], "path": ["insurance", "1"] }
+          },
+          "response": [
+            {
+              "name": "No Content",
+              "body": "",
+              "code": 204,
+              "status": "No Content"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Health Service",
+      "item": [
+        {
+          "name": "Add Health Record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{health_service}}/health", "host": ["{{health_service}}"], "path": ["health"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cowId\": 1,\n  \"diagnosis\": \"string\",\n  \"treatment\": \"string\",\n  \"date\": \"2024-07-07\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": [
+            {
+              "name": "HealthRecord",
+              "body": "{\n  \"id\": 1,\n  \"cowId\": 1,\n  \"diagnosis\": \"string\",\n  \"treatment\": \"string\",\n  \"date\": \"2024-07-07\"\n}",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get All Health Records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{health_service}}/health", "host": ["{{health_service}}"], "path": ["health"] }
+          },
+          "response": [
+            {
+              "name": "HealthRecord List",
+              "body": "[{...HealthRecord...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Get Health Records by Cow ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{health_service}}/health/cow/1", "host": ["{{health_service}}"], "path": ["health", "cow", "1"] }
+          },
+          "response": [
+            {
+              "name": "HealthRecord List",
+              "body": "[{...HealthRecord...}]",
+              "code": 200,
+              "status": "OK"
+            }
+          ]
+        },
+        {
+          "name": "Delete Health Record",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{health_service}}/health/1", "host": ["{{health_service}}"], "path": ["health", "1"] }
+          },
+          "response": [
+            {
+              "name": "No Content",
+              "body": "",
+              "code": 204,
+              "status": "No Content"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "auth_service", "value": "http://localhost:8081" },
+    { "key": "cow_service", "value": "http://localhost:8082" },
+    { "key": "milk_service", "value": "http://localhost:8083" },
+    { "key": "insurance_service", "value": "http://localhost:8084" },
+    { "key": "health_service", "value": "http://localhost:8085" }
+  ]
+}

@@ -13,6 +13,22 @@ public class InsuranceService {
     private InsuranceRepository repo;
 
     public Insurance save(Insurance insurance) {
+
+        String resourcePath = getClass().getClassLoader().getResource("").getPath();
+        String filePath = resourcePath + "qrcode.png";
+
+        try {
+            new QRCodeGenerator().generateQRCodeImage(
+                    insurance.getPolicyNumber(), // text to encode
+                    300,                       // width
+                    300,                       // height
+                    filePath               // output file path
+            );
+            System.out.println("QR Code generated successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return repo.save(insurance);
     }
 
