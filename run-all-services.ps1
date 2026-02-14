@@ -19,10 +19,10 @@ if (Test-Path $envFile) {
         $idx = $line.IndexOf('=')
         if ($idx -lt 0) { return }
         $key = $line.Substring(0,$idx).Trim()
-        $val = $line.Substring($idx+1).Trim().Trim('"','\'')
+        $val = $line.Substring($idx+1).Trim().Trim('"', "'")
         if ($key -ne '') {
             Write-Host "Setting $key"
-            [System.Environment]::SetEnvironmentVariable($key, $val, 'Process')
+            [System.Environment]::SetEnvironmentVariable($key, $val, [System.EnvironmentVariableTarget]::Process)
         }
     }
 } else {
@@ -39,17 +39,17 @@ $services = @( 'discovery-service', 'gateway-service', 'auth-service', 'cow-serv
 foreach ($svc in $services) {
     $svcDir = Join-Path $ScriptDir $svc
     if (-Not (Test-Path $svcDir)) {
-        Write-Host "Skipping $svc: directory not found at $svcDir" -ForegroundColor Yellow
+        Write-Host ("Skipping {0}: directory not found at {1}" -f $svc, $svcDir) -ForegroundColor Yellow
         continue
     }
 
     $logFile = Join-Path $logsDir "$svc.log"
     $cmd = "cd /d `"$svcDir`" && mvn spring-boot:run > `"$logFile`" 2>&1"
-    Write-Host "Starting $svc -> $logFile"
+    Write-Host ("Starting {0} -> {1}" -f $svc, $logFile)
     Start-Process -FilePath "cmd.exe" -ArgumentList "/c $cmd" -WindowStyle Hidden
     Start-Sleep -Seconds 5
 }
 
-Write-Host "All start commands issued. Check logs in: $logsDir" -ForegroundColor Green
+Write-Host ("All start commands issued. Check logs in: {0}" -f $logsDir) -ForegroundColor Green
 
 # EOF

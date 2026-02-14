@@ -1,13 +1,13 @@
 package com.cowmgmt.cow.controller;
 
 import com.cowmgmt.cow.model.Cow;
-import com.cowmgmt.cow.repository.CowRepository;
 import com.cowmgmt.cow.service.CowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cows")
@@ -26,9 +26,10 @@ public class CowController {
         return service.getAll();
     }
 
-    @GetMapping("/cow/{cowId}")
-    public List<Cow> byCow(@PathVariable Long cowId) {
-        return service.getByCowId(cowId);
+    @GetMapping("/{id}")
+    public ResponseEntity<Cow> byId(@PathVariable Long id) {
+        Optional<Cow> cow = service.getById(id);
+        return cow.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
