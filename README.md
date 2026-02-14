@@ -58,64 +58,85 @@ Each module is a standalone Spring Boot microservice:
 1. Clone the repository:
    git clone https://github.com/GovindCoding/cowmanager.git
 
-2. Build All Services
-   ./gradlew clean build
+2. This project has been migrated to Maven. See the "Run the full system (Maven)" section below for build and run instructions. You can build all services from the repository root using the aggregator POM:
 
-3. Run Core Services
-   cd config-server && ./gradlew bootRun
-   cd ../service-registry && ./gradlew bootRun
+```bash
+mvn -T1C -DskipTests package
+```
 
-4. Start the config-server:
-   cd config-server
-   ./gradlew bootRun
+3. Start the discovery (Eureka) server first (recommended):
 
-5. Start the service registry:
-   cd service-registry
-   ./gradlew bootRun
+```bat
+cd discovery-service
+mvn spring-boot:run
+```
 
-6. Start each microservice:
-   cd <service-name>
-   ./gradlew bootRun
+4. Start all services using the helper script (Windows):
 
-7. Access the API Gateway:
-   http://localhost:8080/
+- The repository includes `run-all-services.bat` which starts each service in background using Maven and writes logs to `logs\<service>.log`.
+
+```bat
+cd D:\Java_Workspace\cow-management-system\cow-management-system
+run-all-services.bat
+```
+
+5. If you prefer to run a single service interactively (Windows cmd):
+
+```bat
+set DB_URL=jdbc:mysql://localhost:3306/cow_db
+set DB_USERNAME=root
+set DB_PASSWORD=admin1234
+cd auth-service
+mvn spring-boot:run
+```
+
+PowerShell equivalent:
+
+```powershell
+$env:DB_URL = "jdbc:mysql://localhost:3306/cow_db"
+$env:DB_USERNAME = "root"
+$env:DB_PASSWORD = "admin1234"
+cd auth-service
+mvn spring-boot:run
+```
+
+6. Inspect logs (the helper script writes per-service logs into `logs/`):
+
+```bat
+type logs\discovery-service.log | more
+type logs\auth-service.log | more
+```
 
 -----------------------------------------------------------
-🔐 Default Credentials (for testing)
+📝 Using a local .env file
 -----------------------------------------------------------
 
-- Admin: admin@farmtech.com / admin123
-- Vet: vet@farmtech.com / vet123
-- Worker: worker@farmtech.com / worker123
+For local development you can copy the example `.env.example` to a `.env` file and edit the values (recommended). Do **not** commit `.env` to source control.
 
------------------------------------------------------------
-📊 Features
------------------------------------------------------------
+Windows (cmd.exe):
 
-- Cow lifecycle tracking with QR/RFID support
-- Health monitoring and vaccination alerts
-- Breeding cycle and calving management
-- Calf registration, health tracking, and weaning schedules
-- Milk yield tracking and analytics
-- Feed scheduling and nutrition planning
-- Feed and medicine inventory management
-- Staff management: roles, shifts, task assignments
-- Automated task scheduling (feeding, milking, health checks)
-- Role-based access for admins, vets, and workers
-- RESTful APIs with Swagger documentation
-- Farm-wide analytics dashboard (milk yield, health KPIs, breeding success)
+```bat
+copy .env.example .env
+notepad .env  # edit and save
+```
 
------------------------------------------------------------
-📈 Future Enhancements
------------------------------------------------------------
+PowerShell:
 
-- AI-based health anomaly detection
-- IoT integration for real-time monitoring
-- Mobile app for field workers
-- Multilingual support (Marathi, Hindi, English)
-- Integration with government livestock databases
-- Facial recognition for cow identification
-- Staff performance analytics and payroll integration
+```powershell
+Copy-Item .env.example .env
+notepad .env  # or use your preferred editor
+```
+
+After editing `.env` you can run the helper script which will load `.env` automatically:
+
+```bat
+run-all-services.bat
+```
+
+Notes & recommendations
+- Do not commit production credentials. Use environment variables, a local `.env` tooling, or a secret manager for production/deployment.
+- If you want the helper script to load a `.env` file, I can add a small loader to `run-all-services.bat` that sets environment variables from a `.env` file before launching services.
+- If you want a multi-module aggregator `pom.xml` so `mvn -pl :all` or `mvn -am` can build/start everything in one command, I can add that as a next step.
 
 -----------------------------------------------------------
 📄 License

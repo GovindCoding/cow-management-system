@@ -1,9 +1,6 @@
 HELP.md
-.gradle
-.gradle/
-/.gradle
+
 build/
-!gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
 
@@ -39,7 +36,6 @@ out/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
 
 ### VS Code ###
 .vscode/
@@ -72,3 +68,12 @@ replay_pid*
 
 # react
 /frontend-react/node_modules/
+
+# Local environment file
+.env
+
+# Maven target directories
+**/target/
+
+# Application logs
+logs/
