@@ -1,0 +1,5 @@
+com\cowmgmt\cow\model\Cow.class
+com\cowmgmt\cow\service\CowService.class
+com\cowmgmt\cow\repository\CowRepository.class
+com\cowmgmt\cow\controller\CowController.class
+com\cowmgmt\cow\CowServiceApplication.class

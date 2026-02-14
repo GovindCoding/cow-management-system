@@ -118,6 +118,100 @@ Each module is a standalone Spring Boot microservice:
 - Staff performance analytics and payroll integration
 
 -----------------------------------------------------------
+📚 Run the full system (Maven)
+-----------------------------------------------------------
+
+This project has been converted to use Maven for service builds and runs. The following explains how to build and start the core services locally and the environment variables required.
+
+Required environment variables (recommended; defaults are provided in each service):
+- DB_URL — Database JDBC URL (default: jdbc:mysql://localhost:3306/cow_db)
+- DB_USERNAME — Database username (default: root)
+- DB_PASSWORD — Database password (default: admin1234)
+
+These environment variables are used by services that require a database (for example: `auth-service`, `cow-service`, `milk-service`, `health-service`, `insurance-service`). Services that do not use a database (for example: `discovery-service`) ignore these variables.
+
+1) Build all services (from the repository root):
+
+```bash
+# from the project root (where this README.md lives)
+mvn -T1C -DskipTests package
+```
+
+2) Start the discovery (Eureka) server first (recommended):
+
+```bat
+cd discovery-service
+mvn spring-boot:run
+```
+
+3) Start all services using the helper script (Windows):
+
+- The repository includes `run-all-services.bat` which starts each service in background using Maven and writes logs to `logs\<service>.log`.
+
+```bat
+cd D:\Java_Workspace\cow-management-system\cow-management-system
+run-all-services.bat
+```
+
+4) If you prefer to run a single service interactively (Windows cmd):
+
+```bat
+set DB_URL=jdbc:mysql://localhost:3306/cow_db
+set DB_USERNAME=root
+set DB_PASSWORD=admin1234
+cd auth-service
+mvn spring-boot:run
+```
+
+PowerShell equivalent:
+
+```powershell
+$env:DB_URL = "jdbc:mysql://localhost:3306/cow_db"
+$env:DB_USERNAME = "root"
+$env:DB_PASSWORD = "admin1234"
+cd auth-service
+mvn spring-boot:run
+```
+
+5) Inspect logs (the helper script writes per-service logs into `logs/`):
+
+```bat
+type logs\discovery-service.log | more
+type logs\auth-service.log | more
+```
+
+-----------------------------------------------------------
+📝 Using a local .env file
+-----------------------------------------------------------
+
+For local development you can copy the example `.env.example` to a `.env` file and edit the values (recommended). Do **not** commit `.env` to source control.
+
+Windows (cmd.exe):
+
+```bat
+copy .env.example .env
+notepad .env  # edit and save
+```
+
+PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+notepad .env  # or use your preferred editor
+```
+
+After editing `.env` you can run the helper script which will load `.env` automatically:
+
+```bat
+run-all-services.bat
+```
+
+Notes & recommendations
+- Do not commit production credentials. Use environment variables, a local `.env` tooling, or a secret manager for production/deployment.
+- If you want the helper script to load a `.env` file, I can add a small loader to `run-all-services.bat` that sets environment variables from a `.env` file before launching services.
+- If you want a multi-module aggregator `pom.xml` so `mvn -pl :all` or `mvn -am` can build/start everything in one command, I can add that as a next step.
+
+-----------------------------------------------------------
 📄 License
 -----------------------------------------------------------
 
