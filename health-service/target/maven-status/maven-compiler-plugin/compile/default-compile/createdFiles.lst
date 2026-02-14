@@ -1,5 +1,0 @@
-com\cowmgmt\healthservice\model\HealthRecord.class
-com\cowmgmt\healthservice\repository\HealthRecordRepository.class
-com\cowmgmt\healthservice\controller\HealthRecordController.class
-com\cowmgmt\healthservice\HealthServiceApplication.class
-com\cowmgmt\healthservice\service\HealthRecordService.class

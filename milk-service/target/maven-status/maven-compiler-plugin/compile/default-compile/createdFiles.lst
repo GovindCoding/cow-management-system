@@ -1,5 +1,0 @@
-com\cowmgmt\milkservice\service\MilkRecordService.class
-com\cowmgmt\milkservice\MilkServiceApplication.class
-com\cowmgmt\milkservice\controller\MilkRecordController.class
-com\cowmgmt\milkservice\model\MilkRecord.class
-com\cowmgmt\milkservice\repository\MilkRecordRepository.class

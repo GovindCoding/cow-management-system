@@ -1,6 +1,0 @@
-com\cowmgmt\insurance\service\InsuranceService.class
-com\cowmgmt\insurance\service\QRCodeGenerator.class
-com\cowmgmt\insurance\repository\InsuranceRepository.class
-com\cowmgmt\insurance\InsuranceServiceApplication.class
-com\cowmgmt\insurance\model\Insurance.class
-com\cowmgmt\insurance\controller\InsuranceController.class
