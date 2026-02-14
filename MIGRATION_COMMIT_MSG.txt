@@ -1,0 +1,18 @@
+Migrate project from Gradle to Maven
+
+Summary:
+- Migrated build system from Gradle to Maven (root aggregator pom + service-level poms).
+- Converted service configurations from `application.yml` to `application.properties` and updated them to use environment variables (DB_URL, DB_USERNAME, DB_PASSWORD) with safe defaults.
+- Replaced `run-all-services.bat` to load `.env` (fallback to `.env.example`) and start services using `mvn spring-boot:run` with per-service logs in `logs/`.
+- Added `run-all-services.ps1` (PowerShell) to start services on Windows via PowerShell.
+- Added `.env.example` and updated `.gitignore` to ignore `.env`, `logs/`, and Maven `target/` folders.
+- Removed Gradle wrapper and build scripts from repository.
+- Added GitHub Actions workflow to build the project with Maven on push and PR.
+
+Notes:
+- The repo is now Maven-first. Build from the root using:
+  mvn -T1C -DskipTests package
+
+- To start services locally, copy `.env.example` to `.env` and edit values, then run the helper script:
+  run-all-services.bat  (cmd)
+  ./run-all-services.ps1 (PowerShell)

@@ -58,93 +58,20 @@ Each module is a standalone Spring Boot microservice:
 1. Clone the repository:
    git clone https://github.com/GovindCoding/cowmanager.git
 
-2. Build All Services
-   ./gradlew clean build
-
-3. Run Core Services
-   cd config-server && ./gradlew bootRun
-   cd ../service-registry && ./gradlew bootRun
-
-4. Start the config-server:
-   cd config-server
-   ./gradlew bootRun
-
-5. Start the service registry:
-   cd service-registry
-   ./gradlew bootRun
-
-6. Start each microservice:
-   cd <service-name>
-   ./gradlew bootRun
-
-7. Access the API Gateway:
-   http://localhost:8080/
-
------------------------------------------------------------
-🔐 Default Credentials (for testing)
------------------------------------------------------------
-
-- Admin: admin@farmtech.com / admin123
-- Vet: vet@farmtech.com / vet123
-- Worker: worker@farmtech.com / worker123
-
------------------------------------------------------------
-📊 Features
------------------------------------------------------------
-
-- Cow lifecycle tracking with QR/RFID support
-- Health monitoring and vaccination alerts
-- Breeding cycle and calving management
-- Calf registration, health tracking, and weaning schedules
-- Milk yield tracking and analytics
-- Feed scheduling and nutrition planning
-- Feed and medicine inventory management
-- Staff management: roles, shifts, task assignments
-- Automated task scheduling (feeding, milking, health checks)
-- Role-based access for admins, vets, and workers
-- RESTful APIs with Swagger documentation
-- Farm-wide analytics dashboard (milk yield, health KPIs, breeding success)
-
------------------------------------------------------------
-📈 Future Enhancements
------------------------------------------------------------
-
-- AI-based health anomaly detection
-- IoT integration for real-time monitoring
-- Mobile app for field workers
-- Multilingual support (Marathi, Hindi, English)
-- Integration with government livestock databases
-- Facial recognition for cow identification
-- Staff performance analytics and payroll integration
-
------------------------------------------------------------
-📚 Run the full system (Maven)
------------------------------------------------------------
-
-This project has been converted to use Maven for service builds and runs. The following explains how to build and start the core services locally and the environment variables required.
-
-Required environment variables (recommended; defaults are provided in each service):
-- DB_URL — Database JDBC URL (default: jdbc:mysql://localhost:3306/cow_db)
-- DB_USERNAME — Database username (default: root)
-- DB_PASSWORD — Database password (default: admin1234)
-
-These environment variables are used by services that require a database (for example: `auth-service`, `cow-service`, `milk-service`, `health-service`, `insurance-service`). Services that do not use a database (for example: `discovery-service`) ignore these variables.
-
-1) Build all services (from the repository root):
+2. This project has been migrated to Maven. See the "Run the full system (Maven)" section below for build and run instructions. You can build all services from the repository root using the aggregator POM:
 
 ```bash
-# from the project root (where this README.md lives)
 mvn -T1C -DskipTests package
 ```
 
-2) Start the discovery (Eureka) server first (recommended):
+3. Start the discovery (Eureka) server first (recommended):
 
 ```bat
 cd discovery-service
 mvn spring-boot:run
 ```
 
-3) Start all services using the helper script (Windows):
+4. Start all services using the helper script (Windows):
 
 - The repository includes `run-all-services.bat` which starts each service in background using Maven and writes logs to `logs\<service>.log`.
 
@@ -153,7 +80,7 @@ cd D:\Java_Workspace\cow-management-system\cow-management-system
 run-all-services.bat
 ```
 
-4) If you prefer to run a single service interactively (Windows cmd):
+5. If you prefer to run a single service interactively (Windows cmd):
 
 ```bat
 set DB_URL=jdbc:mysql://localhost:3306/cow_db
@@ -173,7 +100,7 @@ cd auth-service
 mvn spring-boot:run
 ```
 
-5) Inspect logs (the helper script writes per-service logs into `logs/`):
+6. Inspect logs (the helper script writes per-service logs into `logs/`):
 
 ```bat
 type logs\discovery-service.log | more
