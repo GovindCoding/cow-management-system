@@ -1,4 +1,4 @@
-server:
+    server:
   port: 8080
 
 spring:
@@ -15,6 +15,14 @@ spring:
           uri: lb://insurance-service
           predicates:
             - Path=/insurance/**
+        - id: milk-service
+          uri: lb://milk-service
+          predicates:
+            - Path=/milk/**
+        - id: health-service
+          uri: lb://health-service
+          predicates:
+            - Path=/health/**
 
   discovery:
     locator:

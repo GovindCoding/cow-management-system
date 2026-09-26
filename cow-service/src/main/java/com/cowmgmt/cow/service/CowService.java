@@ -21,7 +21,7 @@ public class CowService {
     }
 
     public List<Cow> getByCowId(Long cowId) {
-        return repo.findByCowId(cowId);
+        return repo.findAllById(List.of(cowId));
     }
 
     public void delete(Long id) {

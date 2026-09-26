@@ -58,26 +58,19 @@ Each module is a standalone Spring Boot microservice:
 1. Clone the repository:
    git clone https://github.com/GovindCoding/cowmanager.git
 
-2. Build All Services
-   ./gradlew clean build
+2. Build all backend services from the repository root:
+   mvn clean package
 
-3. Run Core Services
-   cd config-server && ./gradlew bootRun
-   cd ../service-registry && ./gradlew bootRun
+3. Start each service in a separate terminal from the repository root:
+   mvn -pl discovery-service spring-boot:run
+   mvn -pl gateway-service spring-boot:run
+   mvn -pl cow-service spring-boot:run
+   mvn -pl milk-service spring-boot:run
+   mvn -pl health-service spring-boot:run
+   mvn -pl auth-service spring-boot:run
+   mvn -pl insurance-service spring-boot:run
 
-4. Start the config-server:
-   cd config-server
-   ./gradlew bootRun
-
-5. Start the service registry:
-   cd service-registry
-   ./gradlew bootRun
-
-6. Start each microservice:
-   cd <service-name>
-   ./gradlew bootRun
-
-7. Access the API Gateway:
+4. Access the API Gateway:
    http://localhost:8080/
 
 -----------------------------------------------------------

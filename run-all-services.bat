@@ -1,13 +1,8 @@
 @echo off
-start cmd /k "cd eureka-server && gradlew bootRun"
+start "Discovery Service" /D "%~dp0" cmd /k "mvn -pl discovery-service spring-boot:run"
 timeout /t 5
-start cmd /k "cd gateway-service && gradlew bootRun"
-start cmd /k "cd cow-service && gradlew bootRun"
-start cmd /k "cd insurance-service && gradlew bootRun"
+start "Gateway Service" /D "%~dp0" cmd /k "mvn -pl gateway-service spring-boot:run"
+start "Cow Service" /D "%~dp0" cmd /k "mvn -pl cow-service spring-boot:run"
+start "Insurance Service" /D "%~dp0" cmd /k "mvn -pl insurance-service spring-boot:run"
 
-:: This is also a comment
-:: Each start cmd /k opens a new terminal and runs the service.
-:: timeout /t 5 gives Eureka a few seconds to start before others register.
-:: Usage:
-:: Save as run-all-services.bat in your project root.
-:: Double-click to run all services.
+:: Each start command opens a terminal for one Maven service.
